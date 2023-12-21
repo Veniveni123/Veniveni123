@@ -44,4 +44,4 @@ Day 2 - Recursion and Search
 
 2.5 Linear search of array
 
-Binary search of array
+2.6 Binary search of array
