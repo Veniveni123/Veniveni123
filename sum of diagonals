@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int matrix[10][10], i, j, n, sum1 = 0, sum2 = 0;
+    printf("Enter the size of matrix: ");
+    scanf("%d", &n);
+    printf("Enter the elements of the matrix:\n");
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+    for (i = 0; i < n; i++) {
+        sum1 += matrix[i][i];
+        sum2 += matrix[i][n - i - 1];
+    }
+    printf("Sum of the main diagonal elements is: %d\n", sum1);
+    printf("Sum of the opposite diagonal elements is: %d\n", sum2);
+    return 0;
+}
