@@ -1,0 +1,27 @@
+#include <stdio.h>
+int validate(char *str)
+{
+    int i;
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (!((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= '0' && str[i] <= '9')))
+        {
+            return 0; 
+        }
+    }
+    return 1; 
+}
+int main()
+    {
+    char *str = "Hello123";
+    printf("String is \"%s\"\n", str);
+      if (validateg(str))
+      {
+        printf("Valid String\n");
+      } 
+      else
+    {
+        printf("Invalid String\n");
+    }
+    return 0;
+}
