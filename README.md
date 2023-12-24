@@ -17,19 +17,20 @@ Day 1 - Arrays
 1.8 Find duplicate element
 
 1.9 Display the location of given element in array and print it
-Ascending/Descending/Alphabet order
 
-1.10 Check validation of String
+1.10 Ascending/Descending/Alphabet order
 
-1.11 Largest element in matrix
+1.11 Check validation of String
 
-1.12 Repeated twice in array
+1.12 Largest element in matrix
 
-1.13 Print odd and even in given array
+1.13 Repeated twice in array
 
-1.14 Sum of row and column in matrix
+1.14 Print odd and even in given array
 
-1.15 Given array elements display 5th iterated element
+1.15 Sum of row and column in matrix
+
+1.16 Given array elements display 5th iterated element
 
 
 Day 2 - Recursion and Search
@@ -45,3 +46,17 @@ Day 2 - Recursion and Search
 2.5 Linear search of array
 
 2.6 Binary search of array
+
+Day 3 - singly linked list
+
+3.1 implement SLL with insertion(beg,end,middle),delete(beg,end,middle),display, search, sort and to find max and min
+
+3.2 to determine whether a SLL is palindrome or not
+
+3.3 to merge 2 sorted SLL into a singly sorted linked list
+
+3.4 print the no of nodes in the given linked list
+
+3.5 intersect SLL
+
+3.6 reverse SLL
