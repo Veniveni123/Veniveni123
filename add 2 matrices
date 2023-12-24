@@ -17,7 +17,6 @@ int main ()
 	    }
 	}
     }
-
   printf ("matrix 2 is :\n");
   for (i = 0; i < 3; i++)
     {
@@ -30,14 +29,13 @@ int main ()
 	    }
 	}
     }
-  // adding two matrices
   for (i = 0; i < 3; i++)
+  {
     for (j = 0; j < 3; j++)
       {
 	sum[i][j] = mat1[i][j] + mat2[i][j];
       }
-
-  // printing the sum 0f two matrices
+  }
   printf ("\nSum of two matrices: \n");
   for (i = 0; i < 3; i++)
     {
@@ -50,6 +48,5 @@ int main ()
 	    }
 	}
     }
-
   return 0;
 }
