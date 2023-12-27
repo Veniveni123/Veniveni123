@@ -1,28 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define MAXSIZE 100
-int stack[MAXSIZE];
+#define SIZE 100
+int stack[SIZE];
 int top;
 int isEmpty()
  {
     if (top == -1) 
-	{
-        return 1;
+    {
+       return 1;
     } 
-	else 
-	{
+    else 
+    { 
         return 0;
     }
 }
-
 int isFull()
  {
-    if (top == MAXSIZE-1)
-	{
-        return 1;
+    if (top == SIZE-1)
+    {
+       return 1;
     } 
-	else 
-	{
+    else 
+    {
         return 0;
     }
 }
@@ -30,13 +29,13 @@ int isFull()
 int push(int data) 
 {
     if (!isFull())
-	 {
-	 	int x;
+    {
+	int x;
         top = top + 1;
         stack[top] = data;
     } 
-	else 
-	{
+    else 
+    {
         printf("Stack is full\n");
     }
 }
@@ -44,11 +43,11 @@ int push(int data)
 int pop() 
 {
 	int data;
-    if (!isEmpty()) 
+        if (!isEmpty()) 
 	{
-        data = stack[top];
-        top = top - 1;
-        printf("popped element is:%d\n",data);
+           data = stack[top];
+           top = top - 1;
+           printf("popped element is:%d\n",data);
         return data;
     } 
 	else 
@@ -60,8 +59,7 @@ int pop()
 
 int peek() 
 {
-    return stack[top];
-    printf("the element peeked is:",stack[top]);
+    printf("the element peeked is:%d\n",stack[top]);
 }
 
 void display()
@@ -79,7 +77,8 @@ int main()
         printf("1. Push\n");
         printf("2. Pop\n");
         printf("3. Display\n");
-        printf("4. Exit\n");
+        printf("4. Peek\n");
+        printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice) 
@@ -96,6 +95,9 @@ int main()
                 display();
                 break;
             case 4:
+                peek();
+                break;
+            case 5:
                 printf("Exiting the program.\n");
                 return 0;
             default:
