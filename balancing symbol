@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#define size 100
+char stack[size];
+int top = -1;
+
+char isFull()
+{
+	if(top==size-1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+char isEmpty()
+{
+	if(top==-1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+int push(char c)
+{
+	if(!isFull())
+	{
+		top=top+1;
+		stack[top]=c;
+	}
+}
+char pop()
+{
+	char c;
+	if(!isEmpty())
+	{
+		c=stack[top];
+		top=top-1;
+		printf("%c",c);
+	}
+}
+bool match(char char1, char char2) 
+{
+    if (char1 == '(' && char2 == ')')
+	{
+        return true;
+    } 
+	else if (char1 == '[' && char2 == ']')
+	{
+        return true;
+    } 
+	else if (char1 == '{' && char2 == '}')
+	{
+        return true;
+    } 
+	else 
+	{
+        return false;
+    }
+}
+
+bool balance(char* text) 
+{
+    int i;
+    for (i = 0; i < strlen(text); i++) 
+	{
+        if (text[i] == '(' || text[i] == '[' || text[i] == '{') 
+		{
+            push(text[i]);
+        }
+		else if (text[i] == ')' || text[i] == ']' || text[i] == '}')
+		{
+            if (top == -1) 
+			{
+                return false;
+            } 
+			else if (!match(pop(), text[i])) 
+			{
+                return false;
+            }
+        }	
+    }
+    return top == -1;
+}
+int main() 
+{
+    char text[size];
+    printf("name: s.keerthiga veni\nreg no: 192324001\n");
+    printf("Enter a string containing (),[],{} :");
+    scanf("%s", text);
+    if (balance(text)) 
+	{
+        printf("\nThe expression is balanced.\n");
+    } else 
+	{
+        printf("\nThe expression is not balanced.\n");
+    }
+    return 0;
+}
