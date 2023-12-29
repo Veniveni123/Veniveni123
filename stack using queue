@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct queue 
+{
+    int data;
+    struct queue *next;
+}*n;
+
+struct queue *q1 = NULL;
+struct queue *q2 = NULL;
+
+void push(int x) 
+{
+    n = (struct queue *)malloc(sizeof(struct queue));
+    n->data = x;
+    n->next = NULL;
+    if (q1 == NULL) 
+	{
+        q1 = n;
+    } 
+	else 
+	{
+        while (q1->next != NULL) 
+		{
+            q2 = (struct queue *)malloc(sizeof(struct queue));
+            q2->data = q1->data;
+            q2->next = q1->next;
+            q1 = q1->next;
+        }
+        q1->next = n;
+        q2 = q1;
+        q1 = q1->next;
+    }
+}
+
+int pop() 
+{
+    int x;
+    if (q1 == NULL) 
+	{
+        printf("\nStack is empty");
+        return -1;
+    } 
+	else 
+	{
+        while (q1->next != NULL) 
+		{
+            q2 = (struct queue *)malloc(sizeof(struct queue));
+            q2->data = q1->data;
+            q2->next = q1->next;
+            q1 = q1->next;
+        }
+        x = q1->data;
+        free(q1);
+        q1 = q2;
+        q2 = NULL;
+        return x;
+    }
+}
+
+int main() 
+{
+    push(10);
+    push(20);
+    push(30);
+    printf("\nPopped element: %d", pop());
+    return 0;
+}
