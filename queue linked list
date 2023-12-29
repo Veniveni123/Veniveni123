@@ -1,0 +1,116 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
+{
+    int data;
+    struct Node* next;
+}*front,*rear,*n;
+
+void enqueue(int num) 
+{
+    n = (struct Node*)malloc(sizeof(struct Node));
+    n->data = num;
+    n->next = NULL;
+    if (rear == NULL) 
+	{
+        front = rear = n;
+    }
+    else
+    {
+        rear->next = n;
+        rear = n;
+    }
+}
+
+void dequeue() 
+{
+	struct node*t;
+    if (front == NULL) 
+	{
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        t = front;
+        front = front->next;
+        free(t);
+    }
+}
+void display() 
+{
+    if (front == NULL) 
+	{
+        printf("Queue is empty\n");
+    }
+    else
+    {
+         struct Node* t;
+         while (t != NULL) 
+		 {
+            printf("%d ", t->data);
+            t = t->next;
+         }
+         printf("\n");
+    }
+}
+int front_q() 
+{
+    if (front == NULL) 
+	{
+        printf("Queue is empty\n");
+        return -1;
+    }
+    printf("%d",front->data);
+}
+
+int rear_q() 
+{
+    if (rear == NULL) 
+	{
+        printf("Queue is empty\n");
+        return -1;
+    }
+
+    printf("%d",rear->data);
+}
+
+int main() 
+{
+    int choice, item;
+    while (1) 
+	{
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Display\n");
+        printf("4. Front\n");
+        printf("5. Rear\n");
+        printf("6. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) 
+		{
+            case 1:
+                printf("Enter the element to enqueue: ");
+                scanf("%d", &item);
+                enqueue(item);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+            	front_q();
+            	break;
+            case 5:
+            	rear_q();
+            	break;
+            case 6:
+                exit(0);
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+    return 0;
+}
