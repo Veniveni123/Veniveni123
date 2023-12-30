@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <malloc.h>
+
+struct node 
+{
+	int data;
+    struct node * left;
+    struct node * right;
+}*n;
+
+struct node * create(int num) 
+{
+    n = (struct node *)malloc(sizeof(struct node));
+    n->data =  num;
+    n->left = NULL;
+    n->right = NULL;
+    return n;
+}
+
+int main() 
+{
+    struct node * root = NULL;
+    root=create(1);
+    root->left=create(2);
+    root->right=create(3);
+    root->left->left=create(4);
+    root->left->right=create(5);
+    printf("the binary tree is created");
+    return 0;
+}
