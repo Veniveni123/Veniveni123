@@ -12,10 +12,9 @@ void displayList()
     t=head;
     while(t!=NULL)
     {
-    	printf("%d",t->data);
+    	printf("%d ",t->data);
     	t=t->next;
 	}
-	printf("displayed");
 }
 
 void insertAtBeginning(int num) 
@@ -38,8 +37,8 @@ void insertAtBeginning(int num)
 
 void insertAtEnd(int num) 
 {
-   n = (struct Node *)malloc(sizeof(struct Node));
-     n->data=num;
+    n = (struct Node *)malloc(sizeof(struct Node));
+    n->data=num;
     n->next=NULL;
     if(head==NULL)
     {
@@ -113,19 +112,79 @@ void deleteAtPosition(int num)
     printf("Node deleted from position %d.\n",num);
 }
 
+void sort() 
+{
+    struct Node *t, *s;
+    int temp;
+    for (t = head; t != NULL; t = t->next) 
+	{
+        for (s = t->next; s != NULL; s = s->next)
+		 {
+            if (t->data > s->data) 
+			{
+                temp = t->data;
+                t->data = s->data;
+                s->data = temp;
+            }
+        }
+    }
+
+    t = head;
+    while (t != NULL) 
+	{
+        printf("%d ", t->data); 
+        t = t->next;
+    }
+}
+
+int search(int s)
+{
+   struct Node*t;
+   for(t=head;t!=NULL;t=t->next)
+   { 
+     if(t->data==s)
+     {
+        return 0;
+     }
+   }
+   return -1;
+}
+
+void min_max() 
+{
+    struct Node* t;
+    int min, max;
+    max = min = head->data;
+    for (t = head; t != NULL; t = t->next) 
+	{
+        if (t->data > max) 
+		{
+            max = t->data;
+        } 
+		else if (t->data < min) 
+		{
+            min = t->data;
+        }
+    }
+    printf("max is %d and min is %d", max, min);
+}
+
 int main()
- {
-    int choice, data, position, n;
+{
+    int choice, data, position, n,index;
     while (1)
 	 {
-        printf("1. Display List\n");
+        printf("\n1. Display List\n");
         printf("2. Insert at Beginning\n");
         printf("3. Insert at End\n");
         printf("4. Insert at Position\n");
         printf("5. Delete at Beginning\n");
         printf("6. Delete at End\n");
         printf("7. Delete at Position\n");
-        printf("8. Exit\n");
+        printf("8. Sort the element\n");
+        printf("9. Search element\n");
+        printf("10. Min and max\n");
+        printf("11. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -162,6 +221,25 @@ int main()
                 deleteAtPosition(position);
                 break;
             case 8:
+            	printf("sorted node is");
+            	sort();
+            	break;
+            case 9:
+            	printf("enter the element to be searched:");
+            	scanf("%d",&data);
+            	index = search(data);
+            	if(index==-1)
+            	{
+            	  printf("element not found\n");
+		}
+		else
+		{
+		  printf("element is found \n");
+		}
+		break;
+	    case 10:
+		min_max();
+            case 11:
                 exit(0);
             default:
                 printf("Invalid choice.\n");
