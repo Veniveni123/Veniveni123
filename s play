@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *left, *right;
+};
+struct node *newNode(int key)
+{
+    struct node *node = (struct node *)malloc(sizeof(struct node));
+    node->data = key;
+    node->left = node->right = NULL;
+    return (node);
+}
+struct node *rightRotate(struct node *x)
+{
+    struct node *y = x->left;
+    x->left = y->right;
+    y->right = x;
+    return y;
+}
+struct node *leftRotate(struct node *x)
+{
+    struct node *y = x->right;
+    x->right = y->left;
+    y->left = x;
+    return y;
+}
+struct node *splay(struct node *root, int key)
+{
+    if (root == NULL || root->data == key)
+        return root;
+    struct node *t = root;
+    while (t != NULL)
+    {
+        if (t->data == key)
+            return t;
+        else if (t->data > key)
+            t = t->left;
+        else
+            t = t->right;
+    }
+    return root;
+}
+struct node *insert(struct node *root, int num)
+{
+    if (root == NULL)
+        return create(k);
+    root = splay(root, k);
+    if (root->data == num)
+        return root;
+    struct node *res = create(k);
+    if (root->data > num)
+    {
+        res->right = root;
+        res->left = root->left;
+        root->left = NULL;
+    }
+    else
+    {
+        res->left = root;
+        res->right = root->right;
+        root->right = NULL;
+    }
+    return res;
+}
+void preOrder(struct node *root)
+{
+    if (root != NULL)
+    {
+        printf("%d ", root->key);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+int main()
+{
+    struct node *root = create(100);
+    root->left = create(50);
+    root->right = create(200);
+    root->left->left = create(40);
+    root->left->left->left = create(30);
+    root->left->left->left->left = create(20);
+    printf("Preorder traversal of the Splay tree is \n");
+    preOrder(root);
+    root = insert(root, 25);
+    root = insert(root,60);
+    printf("\nPreorder traversal of after insertion Splay tree is \n");
+    preOrder(root);
+    return 0;
+}
