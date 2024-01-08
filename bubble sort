@@ -1,0 +1,33 @@
+#include <stdio.h>
+void bubble_sort(int a[], int n, int passes) 
+{
+    int i, j, temp;
+    for (i = 0; i < passes; i++) 
+	{
+        for (j = 0; j < n - i - 1; j++) 
+		{
+            if (a[j] > a[j+1]) 
+			{
+                temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+            }
+        }
+    }
+}
+int main() 
+{
+    int array[100], n, i, passes;
+    printf("Enter number of elements\n");
+    scanf("%d", &n);
+    printf("Enter %d integers\n", n);
+    for (i = 0; i < n; i++)
+        scanf("%d", &array[i]);
+    printf("Enter number of passes\n");
+    scanf("%d", &passes);
+    bubble_sort(array, n, passes);
+    printf("Sorted list in ascending order:\n");
+    for (i = 0; i < n; i++)
+        printf("%d ", array[i]);
+    return 0;
+}
