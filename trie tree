@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define SIZE 26
+
+struct TrieNode 
+{
+    char data;
+    struct TrieNode* children[SIZE];
+    int end;
+};
+
+struct TrieNode* create(char data) 
+{
+    struct TrieNode* node = (struct TrieNode*)malloc(sizeof(struct TrieNode));
+    node->data = data;
+    node->end = 0;
+    for (int i = 0; i < SIZE; i++) {
+        node->children[i] = NULL;
+    }
+    return node;
+}
+
+void insert(struct TrieNode* root, const char* key) {
+    struct TrieNode* p = root;
+    for (int i = 0; i < strlen(key); i++) {
+        int index = key[i] - 'a';
+        if (!p->children[index]) {
+            p->children[index] = create(key[i]);
+        }
+        p = p->children[index];
+    }
+    p->end = 1;
+}
+
+int search(struct TrieNode* root, const char* key) {
+    struct TrieNode* p = root;
+    for (int i = 0; i < strlen(key); i++) {
+        int index = key[i] - 'a';
+        if (!p->children[index]) {
+            return 0;
+        }
+        p = p->children[index];
+    }
+    return (p != NULL && p->end);
+}
+
+int main() {
+    struct TrieNode* root = create('\0');
+    printf("name - s.keerthiga veni\nreg no - 192324001\n");
+    insert(root, "apple");
+    insert(root, "apple");
+    insert(root, "bat");
+    insert(root, "cat");
+
+    printf("Search for 'apple': %d\n", search(root, "apple"));
+    printf("Search for 'bat': %d\n", search(root, "bat"));
+    printf("Search for 'dog': %d\n", search(root, "dog"));
+
+    return 0;
+}
