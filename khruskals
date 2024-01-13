@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<stdbool.h> 
+#define INF 9999999
+#define V 4
+int G[V][V] = 
+{
+  {0 , 2 , 0 , 1},
+  {0 , 0 , 0 , 2},
+  {3 , 0 , 0 , 0},
+  {0 , 0 , 1 , 0}
+};
+
+int main() 
+{
+  int n; 
+  int a[V];
+  memset(a, false, sizeof(a));
+  n = 0;
+  a[0] = true;
+  printf("S.Keerthiga veni\nreg no - 192324001\n");
+  int x; 
+  int y; 
+  printf("\nEdge : Weight\n");
+
+  while (n < V - 1) 
+  {
+    int min = INF;
+    x = 0;
+    y = 0;
+
+    for (int i = 0; i < V; i++) 
+	{
+      if (a[i]) 
+	  {
+        for (int j = 0; j < V; j++) 
+		{
+          if (!a[j] && G[i][j]) 
+		  { 
+            if (min > G[i][j]) 
+			{
+              min = G[i][j];
+              x = i;
+              y = j;
+            }
+          }
+        }
+      }
+    }
+    printf("%d - %d : %d\n", x, y, G[x][y]);
+    a[y] = true;
+    n++;
+  }
+
+  return 0;
+}
